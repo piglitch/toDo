@@ -9,5 +9,5 @@ function displayaddsign(){
     document.querySelector('.nav').appendChild(newProj)
 }
 
-export { newProj, displayaddsign, displayModal };
+export { newProj, displayaddsign, displayModal,  };
 

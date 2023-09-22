@@ -1,8 +1,11 @@
 import _ from 'lodash';
 import './style.css';
-import { brushTeeth } from './display';
 import './navbar';
+import { newProjectfact } from './handleSubmit';
 
-brushTeeth.projectDetails();
+newProjectfact.displayProjects();
+
+
+
 
 

@@ -84,3 +84,7 @@ body{
     border: 1px solid var(--green1);
     padding: 80px;
 }
+.projects{
+    display: flex;
+    flex-direction: column;
+}

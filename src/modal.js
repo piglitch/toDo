@@ -10,15 +10,24 @@ function displayModal(){
     // Create form elements
     const formElement = document.createElement('form');
 
+    const projectLabel = document.createElement('label');
+    projectLabel.textContent = 'Project: ';
+    const projectInput = document.createElement('input')
+    projectInput.classList.add('projectInput')
+    projectInput.type = 'text';
+    projectInput.placeholder = 'Get lean'
+    projectLabel.appendChild(projectInput);
+
     const titleLabel = document.createElement('label');
-    titleLabel.textContent = 'Title:';
+    titleLabel.textContent = 'Title: ';
     const titleInput = document.createElement('input');
+    titleInput.classList.add('titleInput')
     titleInput.type = 'text';
-    titleInput.name = 'title';
+    titleInput.placeholder = 'Eat good';
     titleLabel.appendChild(titleInput);
 
     const descriptionLabel = document.createElement('label');
-    descriptionLabel.textContent = 'Description:';
+    descriptionLabel.textContent = 'Description: ';
     const descriptionTextarea = document.createElement('textarea');
     descriptionTextarea.rows = 4;
     descriptionTextarea.cols = 50;
@@ -26,7 +35,7 @@ function displayModal(){
     descriptionLabel.appendChild(descriptionTextarea);
 
     const notesLabel = document.createElement('label');
-    notesLabel.textContent = 'Notes:';
+    notesLabel.textContent = 'Notes: ';
     const notesTextarea = document.createElement('textarea');
     notesTextarea.rows = 4;
     notesTextarea.cols = 50;
@@ -34,10 +43,12 @@ function displayModal(){
     notesLabel.appendChild(notesTextarea);
 
     const submitButton = document.createElement('input');
+    submitButton.classList.add('submitBtn')
     submitButton.type = 'submit';
     submitButton.value = 'Submit';
-
     // Append elements to the form
+    formElement.appendChild(projectLabel);
+    formElement.appendChild(document.createElement('br'));
     formElement.appendChild(titleLabel);
     formElement.appendChild(document.createElement('br'));
     formElement.appendChild(descriptionLabel);
@@ -51,4 +62,6 @@ function displayModal(){
 
 
 
-export {displayModal, titleInput, descriptionTextarea, notesTextarea, formElement};
+
+
+export {displayModal, projectInput, titleInput, descriptionTextarea, notesTextarea, formElement, submitButton};
