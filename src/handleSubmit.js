@@ -1,38 +1,31 @@
 import {projectInput, titleInput, descriptionTextarea, notesTextarea, formElement} from './modal';
 
+//const projectKeysJSON = localStorage.getItem('projectKeys');
+//const projectKeys = JSON.parse(projectKeysJSON)
+
+let projectKeys = JSON.parse(localStorage.getItem('projectKeys')) || [];
 
 const projectFactory = () =>{
-    
+   
     const displayProjects = () =>{ 
 
-        formElement.addEventListener('submit', (e)=>{
-        e.preventDefault();
+        formElement.addEventListener('submit', ()=>{
+        //e.preventDefault();        
+        
+        projectKeys.push(projectInput.value)
 
-        /// Project
-        const projectArea = document.createElement('div')
-        projectArea.textContent = projectInput.value;
-        document.querySelector('.projects').appendChild(projectArea)
-        
-        /// Title
-        const titleArea = document.createElement('div')
-        titleArea.textContent = titleInput.value;
-        projectArea.appendChild(titleArea)
-        
-        /// Description
-        const descArea = document.createElement('div')
-        descArea.textContent = descriptionTextarea.value;
-        projectArea.appendChild(descArea)
-        
-        /// Notes
-        const notesArea = document.createElement('div')
-        notesArea.textContent = notesTextarea.value;
-        projectArea.appendChild(notesArea)
-
-        console.log('hi')
-        console.log(titleInput.value)
+        /// Save to localStorage
+        localStorage.setItem(`${projectInput.value}`, JSON.stringify({
+//            project: projectInput.value,
+            title: titleInput.value,
+            description: descriptionTextarea.value,
+            notes: notesTextarea.value
+        }));
+        localStorage.setItem('projectKeys', JSON.stringify(projectKeys))
         })
     }
-    return {displayProjects}
+    return {displayProjects, projectKeys}
 }
 
-export const newProjectfact = projectFactory()
+export {projectKeys}; 
+export const newProjectfact = projectFactory();

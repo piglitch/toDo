@@ -1,0 +1,100 @@
+////////////////////// nav ////////////////////////////////////
+/*    document.querySelector('.projects').innerHTML = '';
+        /// Project
+        const projectArea = document.createElement('div')
+        projectArea.textContent = projectInput.value;
+        document.querySelector('.projects').appendChild(projectArea)
+        
+        /// Title
+        const titleArea = document.createElement('div')
+        titleArea.textContent = titleInput.value;
+        projectArea.appendChild(titleArea)
+        
+        /// Description
+        const descArea = document.createElement('div')
+        descArea.textContent = descriptionTextarea.value;
+        projectArea.appendChild(descArea)
+        
+        /// Notes
+        const notesArea = document.createElement('div')
+        notesArea.textContent = notesTextarea.value;
+        projectArea.appendChild(notesArea)
+    */    
+
+
+
+/////////////////////////// navProj //////////////////////////////////
+  // Except projname
+    /*    const exceptProjname = document.createElement("div")
+        exceptProjname.classList.add('exProjname')
+
+        /// Title
+        const title = document.createElement("div")
+        title.classList.add('Title')
+        title.textContent = `${name}`
+
+        // Checklist
+        const checklist = document.createElement("div")
+        checklist.classList.add('check')
+        checklist.textContent = "🔴"        
+        checklist.addEventListener('click', () => {
+        if (checklist.textContent == "🟢") {
+            checklist.textContent = "🔴";
+            return
+        }
+        checklist.textContent = "🟢"; 
+        })        
+
+        // Description
+        const desc = document.createElement("div")
+        desc.classList.add('desc')
+        desc.textContent = `${description}`
+
+        // DueDate 
+        const due = document.createElement("div")
+        due.classList.add('due')
+        due.textContent = `${dueDate}`
+
+        // Priority
+        const prior = document.createElement("div")
+        prior.classList.add('prior')
+        prior.textContent = `${priority}`
+
+        // Notes
+        const note = document.createElement("div")
+        note.classList.add('note')
+        note.textContent = `${notes}`
+
+        title.appendChild(checklist)
+
+        exceptProjname.appendChild(title)
+        exceptProjname.appendChild(desc)
+        exceptProjname.appendChild(due) 
+        exceptProjname.appendChild(prior)
+        exceptProjname.appendChild(note)
+
+    */    
+
+  /*    // Setting exceptProjname's visibility to none
+        exceptProjname.style.display = 'none'; 
+        const prev = document.createElement('div')
+        prev.classList.add('prev')
+        const prevImg = document.createElement("svg")
+        prevImg.innerHTML = `${prevImgsrc}`;
+        prevImg.classList.add('prevImg')
+        prev.appendChild(prevImg)
+        prev.addEventListener('click', () => {
+            if(exceptProjname.style.display == 'none'){
+                exceptProjname.style.display = 'block';
+                return
+            } 
+            exceptProjname.style.display = 'none'; 
+        })               
+
+        const preiewCluster = document.createElement('div')
+        preiewCluster.classList.add('prevcluster')
+        preiewCluster.appendChild(projName)
+        preiewCluster.appendChild(prev)
+        projectCluster.appendChild(preiewCluster)
+        projectCluster.appendChild(exceptProjname)
+    */    
