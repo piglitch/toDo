@@ -3,10 +3,13 @@ const modalElement = document.createElement('div');
 modalElement.classList.add('modal')
 
 function displayModal(){ 
-    newProj.addEventListener('click', (e) => {
-        document.querySelector('body').appendChild(modalElement);
+    newProj.addEventListener('click', () => {
+            document.querySelector('body').appendChild(modalElement);
+            modalElement.style.display = 'block';
+            document.querySelector('#overlay').classList.add('active')
     })
 }    
+
     // Create form elements
     const formElement = document.createElement('form');
 
@@ -42,6 +45,37 @@ function displayModal(){
     notesTextarea.name = 'notes';
     notesLabel.appendChild(notesTextarea);
 
+    const selectPriority = document.createElement('label')
+    selectPriority.textContent = 'Priority: ';
+    
+    const priorityHigh = document.createElement('label');
+    priorityHigh.textContent = 'High ';
+
+    const high = document.createElement('input');
+    high.type = 'radio';
+    high.value = 'High';
+    high.name = 'priority';
+
+    const priorityMid = document.createElement('label');
+    priorityMid.textContent = 'Mid ';
+
+    const mid = document.createElement('input');
+    mid.type = 'radio';
+    mid.value = 'Medium';
+    mid.name = 'priority';
+
+    const priorityLow = document.createElement('label');
+    priorityLow.textContent = 'Low ';
+    
+    const low = document.createElement('input');
+    low.type = 'radio';
+    low.value = 'Low';
+    low.name = 'priority';    
+
+    priorityHigh.appendChild(high);
+    priorityMid.appendChild(mid);
+    priorityLow.appendChild(low);
+
     const submitButton = document.createElement('input');
     submitButton.classList.add('submitBtn')
     submitButton.type = 'submit';
@@ -49,19 +83,36 @@ function displayModal(){
     // Append elements to the form
     formElement.appendChild(projectLabel);
     formElement.appendChild(document.createElement('br'));
+
     formElement.appendChild(titleLabel);
     formElement.appendChild(document.createElement('br'));
+    
     formElement.appendChild(descriptionLabel);
     formElement.appendChild(document.createElement('br'));
+    
     formElement.appendChild(notesLabel);
     formElement.appendChild(document.createElement('br'));
+    
+    formElement.appendChild(selectPriority)
+    formElement.appendChild(priorityHigh);
+    formElement.appendChild(priorityMid);
+    formElement.appendChild(priorityLow);
+
+    formElement.appendChild(document.createElement('br'));
+    formElement.appendChild(document.createElement('br'));
+    
     formElement.appendChild(submitButton);
 
     // Append the form to the container
     modalElement.appendChild(formElement);    
 
+   function closeModal() {
+        // Check if the clicked element is outside the modal or the modal itself
+        document.querySelector('#overlay').addEventListener('click', ()=>{
+            modalElement.style.display = 'none'; 
+            document.querySelector('#overlay').classList.remove('active')      
+        })    
+}
 
-
-
-
-export {displayModal, projectInput, titleInput, descriptionTextarea, notesTextarea, formElement, submitButton};
+    
+export {displayModal, closeModal, projectInput, titleInput, descriptionTextarea, notesTextarea, formElement, submitButton, high, mid, low};

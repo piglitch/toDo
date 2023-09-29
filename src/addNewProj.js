@@ -1,4 +1,5 @@
 import { displayModal } from "./modal"
+import { closeModal } from "./modal";
 
 const newProj = document.createElement("div")
 newProj.classList.add('addProj')
@@ -9,5 +10,6 @@ function displayaddsign(){
     document.querySelector('.nav').appendChild(newProj)
 }
 
-export { newProj, displayaddsign, displayModal,  };
+export { newProj, displayaddsign, displayModal, closeModal };
+
 
