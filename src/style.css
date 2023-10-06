@@ -10,6 +10,7 @@ body{
     color: rgb(0, 192, 26);
     background: rgb(0, 0, 54);
     display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .nav{
@@ -57,8 +58,8 @@ body{
 }
 
 .projNameCluster:hover{
-    background: blue;
-    color: red;
+    background: var(--green1);
+    color: blue;
 }
 
 .addProj{
@@ -66,15 +67,15 @@ body{
     margin-left: 60px;
     margin-top: 700px;
     transition: .2s;
-    border-radius: 50%;
     padding: 5px;
+    fill: var(--green1);
+    scale: 2.5;
 }
 
 .addProj:hover{
-    background-color: rgba(236, 202, 255, 0.3);
-    border-radius: 50%;
     cursor: pointer;
-    padding: 5px;
+    fill: yellow;
+    scale: 3.5;
 }
 
 .modal{
@@ -84,6 +85,9 @@ body{
     border: 1px solid var(--green1);
     padding: 80px;
     border-radius: 20px;
+    backdrop-filter: blur(5px);
+    width: 400px;
+    height: 250px;
 }
 
 .projects{
@@ -93,6 +97,12 @@ body{
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.projectid{
+    position: absolute;
+    margin-top: 0;
+    margin-left: 210px;
 }
 
 #overlay{
@@ -117,11 +127,12 @@ body{
     cursor: pointer;
     margin-top: auto;
     margin-bottom: auto;
+    fill: greenyellow;
 }
 
 .addTitle:hover{
-    background-color: rgba(60, 255, 0, 0.3);
-    border-radius: 50%;
+    fill: goldenrod;
+    scale: 1.25;
     transition: 0.2s;
 }
 
@@ -129,10 +140,117 @@ body{
     fill: aliceblue;
     margin-top: 6px;
     position: absolute;
-    margin-left: 150px;
-    transition: .3s;
+    margin-left: 130px;
+    transition: .2s;
 }
 .prev:hover{
     fill: rgb(255, 2, 2);
     scale: 1.5;
+}
+.addNewTitle{
+    position: fixed;
+    margin-top: 250px;
+    margin-left: 450px;
+    padding: 20px;
+    border: 1px solid var(--green1);
+    backdrop-filter: blur(8px);
+}
+
+.submitBtn{
+    background: none;
+    border: 1px solid var(--green1);
+    border-radius: 2px;
+    color: var(--green1);
+    width: 80px;
+    height: 23px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submitBtn:hover{
+    color: rgb(0, 0, 27);
+    background-color: var(--green1);
+    border-color: rgb(0, 0, 27);
+}
+
+.modalTitleInput{
+    background: none;
+    border: 1px solid var(--green1);
+    color: var(--green1);
+    padding: 2px;
+    outline: none;
+}
+
+.taskcluster{
+    display: flex;
+    margin-top: 10px;
+    padding: 5px;
+    transition: .2s;
+}
+.taskcluster:hover{
+    color: red;
+}
+.taskdiv{
+    padding: 5px;
+    width: 80px;
+}
+.deleteTitlebtn{
+    position: absolute;
+    margin-left: 180px;
+    background: none;
+    border: 1px solid var(--green1);
+    color: var(--green1);
+    cursor: pointer;
+    padding: 5px;
+}
+.deleteTitlebtn:hover{
+    color: var(--green1);
+    background: red;
+    border: none;
+}
+
+.deleteProjectbtn{
+    position: absolute;
+    margin-left: 170px;
+    fill: aliceblue;
+    margin-top: 6px;
+    transition: .2s;
+}
+
+.deleteProjectbtn:hover{
+    fill: rgb(255, 2, 2);
+    scale: 1.5;
+}
+
+/* modal */
+.projectInput, .notesTextarea, .descriptionTextarea, .titleInput{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--green1);
+    outline: none;
+    color: var(--green1);
+    margin-bottom: 10px;
+}
+
+.low{
+    position: absolute;
+    margin-left: 29px;
+    margin-top: 3px;
+    color: var(--green1);
+}
+
+.high{
+    position: absolute;
+    margin-left: 25px;
+    margin-top: 3px;
+    color: var(--green1);
+} 
+.mid{
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 3px;
+    color: var(--green1);
 }

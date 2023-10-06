@@ -22,17 +22,18 @@ function displayModal(){
     projectLabel.appendChild(projectInput);
 
     const titleLabel = document.createElement('label');
-    titleLabel.textContent = 'Title: ';
+    titleLabel.textContent = 'Task: ';
     const titleInput = document.createElement('input');
     titleInput.classList.add('titleInput')
     titleInput.type = 'text';
-    titleInput.placeholder = 'Eat good';
+    titleInput.placeholder = '...Eat good';
     titleLabel.appendChild(titleInput);
 
     const descriptionLabel = document.createElement('label');
     descriptionLabel.textContent = 'Description: ';
     const descriptionTextarea = document.createElement('textarea');
-    descriptionTextarea.rows = 4;
+    descriptionTextarea.classList.add('descriptionTextarea')
+    descriptionTextarea.rows = 2;
     descriptionTextarea.cols = 50;
     descriptionTextarea.name = 'description';
     descriptionLabel.appendChild(descriptionTextarea);
@@ -40,7 +41,8 @@ function displayModal(){
     const notesLabel = document.createElement('label');
     notesLabel.textContent = 'Notes: ';
     const notesTextarea = document.createElement('textarea');
-    notesTextarea.rows = 4;
+    notesTextarea.classList.add('notesTextarea')
+    notesTextarea.rows = 2;
     notesTextarea.cols = 50;
     notesTextarea.name = 'notes';
     notesLabel.appendChild(notesTextarea);
@@ -52,22 +54,27 @@ function displayModal(){
     priorityHigh.textContent = 'High ';
 
     const high = document.createElement('input');
+    high.classList.add('high')
     high.type = 'radio';
     high.value = 'High';
     high.name = 'priority';
 
     const priorityMid = document.createElement('label');
     priorityMid.textContent = 'Mid ';
+    priorityMid.style.marginLeft = '59px'
 
     const mid = document.createElement('input');
+    mid.classList.add('mid')
     mid.type = 'radio';
     mid.value = 'Medium';
     mid.name = 'priority';
 
     const priorityLow = document.createElement('label');
     priorityLow.textContent = 'Low ';
+    priorityLow.style.marginLeft = '59px'
     
     const low = document.createElement('input');
+    low.classList.add('low')
     low.type = 'radio';
     low.value = 'Low';
     low.name = 'priority';    
@@ -95,7 +102,9 @@ function displayModal(){
     
     formElement.appendChild(selectPriority)
     formElement.appendChild(priorityHigh);
+    formElement.appendChild(document.createElement('br'));
     formElement.appendChild(priorityMid);
+    formElement.appendChild(document.createElement('br'));
     formElement.appendChild(priorityLow);
 
     formElement.appendChild(document.createElement('br'));
@@ -110,7 +119,8 @@ function displayModal(){
         // Check if the clicked element is outside the modal or the modal itself
         document.querySelector('#overlay').addEventListener('click', ()=>{
             modalElement.style.display = 'none'; 
-            document.querySelector('#overlay').classList.remove('active')      
+            document.querySelector('#overlay').classList.remove('active')
+            document.querySelector('.addNewTitle').style.display = 'none'      
         })    
 }
 

@@ -1,8 +1,8 @@
 import {projectInput, titleInput, descriptionTextarea, notesTextarea, formElement, high, mid, low} from './modal';
 
 let projectKeys = JSON.parse(localStorage.getItem('projectKeys')) || [];
-let titleList = JSON.parse(localStorage.getItem('titleList')) || [];
-const projectFactory = () =>{
+//let titleList = JSON.parse(localStorage.getItem('titleList')) || [];
+const projectFactory = () => {
    
     const displayProjects = () => { 
 
@@ -12,7 +12,7 @@ const projectFactory = () =>{
         projectKeys.push(projectInput.value)
 
         const selectedPriority = document.querySelector('input[name="priority"]:checked');
-        const priorityValue = selectedPriority ? selectedPriority.value : null;
+        const priorityValue = selectedPriority ? selectedPriority.value : 'Not specified';
 
         /// Save to localStorage
         if (titleInput.value == '' && descriptionTextarea.value == '' && notesTextarea.value == '' && priorityValue == null) {
@@ -21,13 +21,13 @@ const projectFactory = () =>{
             return
         }
         localStorage.setItem(`${projectInput.value}`, JSON.stringify({    
-            title: titleInput.value,
+            task: [titleInput.value],
             description: descriptionTextarea.value,
             notes: notesTextarea.value,
             priority: priorityValue
         }));
-        titleList.push(titleInput.value)
-        localStorage.setItem('titleList', JSON.stringify(titleList))
+//        titleList.push(titleInput.value)
+//        localStorage.setItem('titleList', JSON.stringify(titleList))
         localStorage.setItem('projectKeys', JSON.stringify(projectKeys))
         })
     }
