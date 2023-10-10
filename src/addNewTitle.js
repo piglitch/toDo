@@ -19,9 +19,18 @@ const newTaskFactory = () => {
         modalTitleLabel.appendChild(modalTitleInput)
         newTitleInputModal.appendChild(modalTitleLabel)
         newTitleInputModal.appendChild(sbmtBtn)
-
-        newTitleInputModal.classList.add('addNewTitle')
     }
-    return {addNewTask}
+    addNewTask()
+    function closeTaskModal(){
+        document.querySelector('#overlay').addEventListener('click', ()=>{
+           if (document.querySelector('.modalTitleInput').value = '') {
+             return
+           } 
+            document.querySelector('.newTitleInputModal').style.display = 'none' 
+            document.querySelector('#overlay').classList.remove('active') 
+        })    
+    }
+    return {addNewTask, closeTaskModal}
 }
+
 export const newTask = newTaskFactory()

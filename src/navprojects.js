@@ -1,6 +1,6 @@
-import { newTask } from "./addNewTitle";
+import { newEdit } from "./editfield";
 
-const prevIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg>';
+
 const bin = '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>'
 const plusIco = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>'
 
@@ -15,24 +15,24 @@ const navprojectFactory = () => {
         const projectCluster = document.createElement("div")
         projectCluster.classList.add('projectCluster')
 
+        const prevtitleCluster = document.createElement('div')
+        prevtitleCluster.classList.add('prevtitle')
+
         // Project name        
         if (projectKeys != null) {
             for (let i = 0; i < projectKeys.length; i++) {
                 const projName = document.createElement("div");
                 projName.classList.add('projname');
+                projName.innerHTML = ''
                 projName.textContent = `${projectKeys[i]}`
                 const projNameCluster = document.createElement("div");
                 projNameCluster.appendChild(projName)
                 projNameCluster.classList.add('projNameCluster')
                 projectCluster.appendChild(projNameCluster)
 
-            //   projectContent.appendChild(projName)
 
-                
-                /// 
+            const noreload = () => {     
                 projNameCluster.addEventListener('click', () => {
-                    //const projectKeysJSON = localStorage.getItem('projectKeys');
-                    //const projectKeys = JSON.parse(projectKeysJSON);
                     const projectContent = document.querySelector('.projects')
                     projectContent.textContent = '';
                     const projectNameJSON = localStorage.getItem(`${projectKeys[i]}`)
@@ -48,16 +48,23 @@ const navprojectFactory = () => {
                     addTitle.innerHTML = plusIco
                     addTitle.classList.add('addTitle')
                     addTitle.addEventListener('click', () => {
-                        document.querySelector('#overlay').classList.add('active')                         
-                        newTask.addNewTask()
-                        document.querySelector('.newTitleInputModal').addEventListener('submit', ()=>{
-                                    
-                            projectNameKeys.task.push(document.querySelector('.modalTitleInput').value);
-                            localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
-                            console.log(localStorage.getItem(projName.textContent))
-                            console.log(projName.textContent, projectNameKeys.task)
-                        })
+                        document.querySelector('#overlay').classList.add('active') 
+                    //    document.querySelector('.modalTitleInput').value = ''
+                        document.querySelector('.newTitleInputModal').style.display = 'block'                        
+                        
+                        //// Add new tasks
+                        document.querySelector('.newTitleInputModal').addEventListener('submit', (e)=>{ 
+                            if (document.querySelector('.modalTitleInput').value != '') {    
+                                projectNameKeys.task.push(document.querySelector('.modalTitleInput').value);
+                                localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
+                                console.log(localStorage.getItem(projName.textContent))
+                                console.log(projName.textContent, projectNameKeys.task)
+                            }
+                            return    
+
+                        })                        
                     })
+                    
 
                     const titleCluster = document.createElement('div')
                     titleCluster.classList.add('titleCluster')
@@ -68,6 +75,19 @@ const navprojectFactory = () => {
                     const descDiv = document.createElement('div')
                     descDiv.textContent = `${projectNameKeysArray[1]}: ${projectNameKeys.description}`
                     descDiv.style.marginTop = '20px'
+                    
+                    const editDesc = document.createElement('div')
+                    editDesc.textContent = 'Edit'
+
+                    descDiv.style.display = 'flex'
+                    editDesc.style.marginLeft = '80px'
+                    editDesc.style.border = '1px solid green'
+                    
+                    editDesc.addEventListener('click', ()=> {
+                        document.querySelector('#overlay').classList.add('active') 
+                        newEdit.addNewDescription()
+                    })
+                    descDiv.appendChild(editDesc)
 
                     const notesDiv = document.createElement('div')
                     notesDiv.textContent = `${projectNameKeysArray[2]}: ${projectNameKeys.notes}`
@@ -92,28 +112,29 @@ const navprojectFactory = () => {
                         const deleteTitleBtn = document.createElement('div')
                         deleteTitleBtn.textContent = 'Delete'
                         deleteTitleBtn.classList.add('deleteTitlebtn')
+
+                        const taskKey = projectNameKeys.task[i];
+                        const projKey = `${projName.textContent}${i}`;
                         
-                        deleteTitleBtn.addEventListener('click', (e) => {
-                            
-                            console.log(projectNameKeys.task)
-                            projectNameKeys.task.splice(i, 1)
-                            console.log(projectNameKeys.task)
-                            localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
+                        deleteTitleBtn.addEventListener('click', (e) => { 
+                                console.log(projectNameKeys.task)
+                                e.preventDefault()
+                                projectNameKeys.task.splice(i, 1)
+                                localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
+                                localStorage.removeItem(projKey)
+                                localStorage.removeItem(taskKey)
+                                taskCluster.remove()   
                         })
 
                         const checklist = document.createElement("div")
-                        checklist.classList.add('check')
-
-                        
-                        const taskKey = projectNameKeys.task[i];
-                        const projKey = `${projName.textContent}${i}`;
+                        checklist.classList.add('check')        
                         
                         let checklistObj = JSON.parse(localStorage.getItem(projKey));
 
                         if(checklistObj == null){
                             checklistObj = {};
-                        //    console.log(`${checklistObj}here`);
                         }
+
                         console.log(`${checklistObj}here`)
                         const taskValue = checklistObj[taskKey] || '🔴';
                         checklist.textContent = taskValue;
@@ -143,26 +164,23 @@ const navprojectFactory = () => {
                     projectContent.appendChild(notesDiv)
                     projectContent.appendChild(priorityDiv)
                 }) 
-                ////////// Preview ////
-                const prev = document.createElement('svg')
-                prev.innerHTML = prevIcon;
-                prev.classList.add('prev')
-                projNameCluster.appendChild(prev)
-                prev.addEventListener('click', (e)=>{
-                    e.stopPropagation()
-                    console.log(`${i}hi`)
-                })
+            }
 
+            noreload()
                 // Delete a project
                 const deleteProjectBtn = document.createElement('svg')
                 deleteProjectBtn.innerHTML = bin;
                 deleteProjectBtn.classList.add('deleteProjectbtn')                
                 deleteProjectBtn.addEventListener('click', (e) => {      
-                    e.stopPropagation()              
-                    console.log(projectKeys[i])
+                    e.stopPropagation()    
+                    console.log(projectKeys[i])   
+                    console.log(localStorage.removeItem(projectKeys[i]))       
                     projectKeys.splice(i, 1)
-                    console.log(projectKeys[i])
+                    console.log(projectKeys[i], i)
                     localStorage.setItem('projectKeys', JSON.stringify(projectKeys));
+                    projNameCluster.innerHTML = '';
+                    console.log(projectKeys[i])
+                    location.reload()
                 }) 
                 projNameCluster.appendChild(deleteProjectBtn)
                 

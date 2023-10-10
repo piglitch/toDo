@@ -119,8 +119,7 @@ function displayModal(){
         // Check if the clicked element is outside the modal or the modal itself
         document.querySelector('#overlay').addEventListener('click', ()=>{
             modalElement.style.display = 'none'; 
-            document.querySelector('#overlay').classList.remove('active')
-            document.querySelector('.addNewTitle').style.display = 'none'      
+            document.querySelector('#overlay').classList.remove('active')      
         })    
 }
 

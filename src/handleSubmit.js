@@ -8,15 +8,14 @@ const projectFactory = () => {
 
         formElement.addEventListener('submit', (e)=>{
         //e.preventDefault();        
-        
         projectKeys.push(projectInput.value)
 
         const selectedPriority = document.querySelector('input[name="priority"]:checked');
         const priorityValue = selectedPriority ? selectedPriority.value : 'Not specified';
 
         /// Save to localStorage
-        if (titleInput.value == '' && descriptionTextarea.value == '' && notesTextarea.value == '' && priorityValue == null) {
-            window.alert("no input")
+        if (titleInput.value == '' || projectInput.value == '') {
+            window.alert("Please provide a name for the project and details at least one task!")
             e.preventDefault()
             return
         }
@@ -29,6 +28,8 @@ const projectFactory = () => {
 //        titleList.push(titleInput.value)
 //        localStorage.setItem('titleList', JSON.stringify(titleList))
         localStorage.setItem('projectKeys', JSON.stringify(projectKeys))
+
+        location.reload()
         })
     }
     return {displayProjects, projectKeys}
