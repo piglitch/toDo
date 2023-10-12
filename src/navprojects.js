@@ -57,7 +57,9 @@ const navprojectFactory = () => {
                             console.log(localStorage.getItem(projName.textContent))
                             console.log(projName.textContent, projectNameKeys.task)
                         }
-                        window.alert(`Do not re-Enter the same task and please do not leave the task blank!`)
+                        if (document.querySelector('.modalTitleInput').value == '') {
+                            document.querySelector('.modalTitleInput').value != ''   
+                        }
                     })                        
 
                     const titleCluster = document.createElement('div')
