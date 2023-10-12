@@ -172,9 +172,16 @@ const navprojectFactory = () => {
                     console.log(projectKeys[i])
                     location.reload()
                 }) 
-                projNameCluster.appendChild(deleteProjectBtn)
-                
+                projNameCluster.appendChild(deleteProjectBtn)                
             }        
+        }
+        if (projectKeys == null || projectKeys == '') {
+            const clickHere = document.createElement('div') 
+            clickHere.style.position = 'absolute'
+            clickHere.textContent = '<--------- Click here to add a new project'
+            clickHere.style.marginLeft = '210px'
+            clickHere.style.marginTop = '710px' 
+            document.querySelector('body').appendChild(clickHere)    
         }    
         navBar.appendChild(projectCluster);
     }
