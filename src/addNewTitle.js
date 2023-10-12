@@ -28,6 +28,7 @@ const newTaskFactory = () => {
            } 
             document.querySelector('.newTitleInputModal').style.display = 'none' 
             document.querySelector('#overlay').classList.remove('active') 
+            
         })    
     }
     return {addNewTask, closeTaskModal}

@@ -40,6 +40,7 @@ body{
 }
 .projNameCluster{
     cursor: pointer;
+    margin-top: 10px;
     transition: 0.3s;
     display: flex;
 }
@@ -96,6 +97,8 @@ body{
     position: absolute;
     margin-top: 0;
     margin-left: 210px;
+    font-size: 35px;
+    text-shadow: 2px 2px blue;
 }
 
 #overlay{
@@ -133,19 +136,12 @@ body{
     display: none;
     position: fixed;
     margin-top: 250px;
-    margin-left: 450px;
+    margin-left: 650px;
     padding: 20px;
     border: 1px solid var(--green1);
     backdrop-filter: blur(8px);
 }
-.addNewdesc{
-    position: fixed;
-    margin-top: 250px;
-    margin-left: 450px;
-    padding: 20px;
-    border: 1px solid var(--green1);
-    backdrop-filter: blur(8px);
-}
+
 .submitBtn{
     background: none;
     border: 1px solid var(--green1);
@@ -243,4 +239,19 @@ body{
     margin-left: 30px;
     margin-top: 3px;
     color: var(--green1);
+}
+
+footer{
+    position: absolute;
+    color: darkgreen;
+    margin-top: 890px;
+    margin-left: 210px;
+}
+footer a{
+
+    text-decoration: none;
+    color: darkgreen;
+}
+footer a:hover{
+    color: azure;
 }

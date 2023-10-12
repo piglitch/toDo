@@ -1,6 +1,3 @@
-import { newEdit } from "./editfield";
-
-
 const bin = '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>'
 const plusIco = '<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>'
 
@@ -24,6 +21,7 @@ const navprojectFactory = () => {
                 const projName = document.createElement("div");
                 projName.classList.add('projname');
                 projName.innerHTML = ''
+                projName.textContent = ''
                 projName.textContent = `${projectKeys[i]}`
                 const projNameCluster = document.createElement("div");
                 projNameCluster.appendChild(projName)
@@ -35,8 +33,8 @@ const navprojectFactory = () => {
                 projNameCluster.addEventListener('click', () => {
                     const projectContent = document.querySelector('.projects')
                     projectContent.textContent = '';
-                    const projectNameJSON = localStorage.getItem(`${projectKeys[i]}`)
-                    const projectNameKeys = JSON.parse(projectNameJSON)
+                    let projectNameJSON = localStorage.getItem(`${projectKeys[i]}`)
+                    let projectNameKeys = JSON.parse(projectNameJSON)
 
                     const projectNameKeysArray = Object.keys(projectNameKeys)
 
@@ -51,20 +49,16 @@ const navprojectFactory = () => {
                         document.querySelector('#overlay').classList.add('active') 
                     //    document.querySelector('.modalTitleInput').value = ''
                         document.querySelector('.newTitleInputModal').style.display = 'block'                        
-                        
-                        //// Add new tasks
-                        document.querySelector('.newTitleInputModal').addEventListener('submit', (e)=>{ 
-                            if (document.querySelector('.modalTitleInput').value != '') {    
-                                projectNameKeys.task.push(document.querySelector('.modalTitleInput').value);
-                                localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
-                                console.log(localStorage.getItem(projName.textContent))
-                                console.log(projName.textContent, projectNameKeys.task)
-                            }
-                            return    
-
-                        })                        
                     })
-                    
+                    document.querySelector('.newTitleInputModal').addEventListener('submit', ()=>{ 
+                        if (document.querySelector('.modalTitleInput').value != '' && !projectNameKeys.task.includes(document.querySelector('.modalTitleInput').value)) {    
+                            projectNameKeys.task.push(document.querySelector('.modalTitleInput').value);
+                            localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
+                            console.log(localStorage.getItem(projName.textContent))
+                            console.log(projName.textContent, projectNameKeys.task)
+                        }
+                        window.alert(`Do not re-Enter the same task and please do not leave the task blank!`)
+                    })                        
 
                     const titleCluster = document.createElement('div')
                     titleCluster.classList.add('titleCluster')
@@ -76,19 +70,7 @@ const navprojectFactory = () => {
                     descDiv.textContent = `${projectNameKeysArray[1]}: ${projectNameKeys.description}`
                     descDiv.style.marginTop = '20px'
                     
-                    const editDesc = document.createElement('div')
-                    editDesc.textContent = 'Edit'
-
-                    descDiv.style.display = 'flex'
-                    editDesc.style.marginLeft = '80px'
-                    editDesc.style.border = '1px solid green'
                     
-                    editDesc.addEventListener('click', ()=> {
-                        document.querySelector('#overlay').classList.add('active') 
-                        newEdit.addNewDescription()
-                    })
-                    descDiv.appendChild(editDesc)
-
                     const notesDiv = document.createElement('div')
                     notesDiv.textContent = `${projectNameKeysArray[2]}: ${projectNameKeys.notes}`
                     notesDiv.style.marginTop = '10px'
@@ -108,6 +90,7 @@ const navprojectFactory = () => {
                         const taskDiv = document.createElement('div')
                         taskDiv.textContent = projectNameKeys.task[i]
                         taskDiv.classList.add('taskdiv')
+                        taskDiv.id = `taskdiv${i}`
 
                         const deleteTitleBtn = document.createElement('div')
                         deleteTitleBtn.textContent = 'Delete'
@@ -117,9 +100,11 @@ const navprojectFactory = () => {
                         const projKey = `${projName.textContent}${i}`;
                         
                         deleteTitleBtn.addEventListener('click', (e) => { 
+                                const index =  projectNameKeys.task.indexOf(taskDiv.textContent)
+                                console.log(index, i)
                                 console.log(projectNameKeys.task)
                                 e.preventDefault()
-                                projectNameKeys.task.splice(i, 1)
+                                projectNameKeys.task.splice(index, 1)
                                 localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
                                 localStorage.removeItem(projKey)
                                 localStorage.removeItem(taskKey)
@@ -138,15 +123,18 @@ const navprojectFactory = () => {
                         console.log(`${checklistObj}here`)
                         const taskValue = checklistObj[taskKey] || '🔴';
                         checklist.textContent = taskValue;
+                        checklist.style.fontSize = '12px'
 
                         checklist.addEventListener('click', () => {
                             if (checklist.textContent == "🟢") {
                                 checklist.textContent = "🔴";
                                 checklistObj[taskKey] = checklist.textContent;
+                                checklist.style.fontSize = '12px'
                                 localStorage.setItem(projKey, JSON.stringify(checklistObj));
                                 return;
                             }
                             checklist.textContent = "🟢"; 
+                            checklist.style.fontSize = '12px'
                             checklistObj[taskKey] = checklist.textContent;
                             localStorage.setItem(projKey, JSON.stringify(checklistObj));
                         });
