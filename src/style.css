@@ -82,6 +82,7 @@ body{
     backdrop-filter: blur(5px);
     width: 400px;
     height: 250px;
+    background: rgb(0, 0, 0, .5);
 }
 
 .projects{
@@ -139,7 +140,8 @@ body{
     margin-left: 650px;
     padding: 20px;
     border: 1px solid var(--green1);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
+    background: rgb(0, 0, 0, 0.5);
 }
 
 .submitBtn{

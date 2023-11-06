@@ -12,6 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.8.1",
+    "eslint": "^8.51.0",
+    "eslint-config-google": "^0.14.0",
     "file-loader": "^6.2.0",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
