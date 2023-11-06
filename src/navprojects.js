@@ -50,12 +50,13 @@ const navprojectFactory = () => {
               //    document.querySelector('.modalTitleInput').value = ''
               document.querySelector('.newTitleInputModal').style.display = 'block';
             });
-            document.querySelector('.newTitleInputModal').addEventListener('submit', ()=>{
+            document.querySelector('.newTitleInputModal').addEventListener('click', ()=>{
               if (document.querySelector('.modalTitleInput').value != '' && !projectNameKeys.task.includes(document.querySelector('.modalTitleInput').value)) {
                 projectNameKeys.task.push(document.querySelector('.modalTitleInput').value);
                 localStorage.setItem(`${projName.textContent}`, JSON.stringify(projectNameKeys));
                 console.log(localStorage.getItem(projName.textContent));
-                console.log(projName.textContent, projectNameKeys.task);
+                console.log(projName.textContent, projectNameKeys.task);                
+                location.reload();
               }
               if (document.querySelector('.modalTitleInput').value == '') {
                 document.querySelector('.modalTitleInput').value != '';
